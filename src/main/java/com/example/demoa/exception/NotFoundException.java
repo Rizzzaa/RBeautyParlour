@@ -5,6 +5,6 @@ public class NotFoundException extends RuntimeException {
         super(message + " not found");
     }
     public NotFoundException() {
-        super("Activity with id is not found");
+        super("Service with id is not found");
     }
 }
