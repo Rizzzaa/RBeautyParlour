@@ -2,29 +2,24 @@ package com.example.demoa.serviceImplementation;
 
 
 import com.example.demoa.entity.Employee;
-import com.example.demoa.enums.Category;
 import com.example.demoa.exception.EmployeeNotFoundException;
 import com.example.demoa.repository.EmployeeRepository;
-import com.example.demoa.service.IEmployeeService;
+import com.example.demoa.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EmployeeServiceImp implements IEmployeeService {
+public class EmployeeServiceImp implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
     @Override
     public String addEmployee(Employee employee) {
-        if(employee.getSlot() == null){
-            employee.setSlot(LocalDate.now());
-        }
         employeeRepository.save(employee);
-        return "Employee added successfully";
+        return "Activity added successfully";
     }
 
     @Override
@@ -52,7 +47,7 @@ public class EmployeeServiceImp implements IEmployeeService {
     public String deleteEmployee(Integer id) throws EmployeeNotFoundException{
         employeeRepository.findById(id).orElseThrow(()->new EmployeeNotFoundException("Employee with id= " + id + " is not found"));
         employeeRepository.deleteById(id);
-        return "Employee Removed";
+        return "Deleted";
     }
 
     @Override
@@ -60,10 +55,6 @@ public class EmployeeServiceImp implements IEmployeeService {
         return employeeRepository.findById(id).orElseThrow(EmployeeNotFoundException::new);
     }
 
-    @Override
-    public List<Employee> readEmployeeBySpeciality(Category speciality){
-        return employeeRepository.findBySpeciality(speciality);
-    }
 
     @Override
     public List<Employee> readAllEmployee() {

@@ -29,7 +29,7 @@ public class Course {
 
 //    @Lob
 //    @Column(name = "imagedata", length = 1000)
-//    tprivate byte[] imageData;
+//    private byte[] imageData;
 //
 //    private String name;
 //    private String type;
