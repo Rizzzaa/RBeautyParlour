@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Employee {
@@ -17,7 +17,7 @@ public class Employee {
     private String employeeName;
     private Category speciality;
     private Availability availability;
-    private LocalDate slot;
+    private LocalDateTime slot;
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -51,11 +51,11 @@ public class Employee {
         this.availability = availability;
     }
 
-    public LocalDate getSlot() {
+    public LocalDateTime getSlot() {
         return slot;
     }
 
-    public void setSlot(LocalDate slot) {
+    public void setSlot(LocalDateTime slot) {
         this.slot = slot;
     }
 }

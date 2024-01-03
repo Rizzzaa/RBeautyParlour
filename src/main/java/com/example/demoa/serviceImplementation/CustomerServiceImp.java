@@ -33,9 +33,9 @@ public class CustomerServiceImp implements ICustomerService {
         if(customer.getCustomerPassword() != null){
             customerOfId.setCustomerPassword(customer.getCustomerPassword());
         }
-//        if(customer.getCustomerRole() != null){
-//            customerOfId.setCustomerRole(customer.getCustomerRole());
-//        }
+        if(customer.getCustomerRole() != null){
+            customerOfId.setCustomerRole(customer.getCustomerRole());
+        }
         iCustomerRepository.save(customerOfId);
         return "Customer Updated";
     }
@@ -45,7 +45,7 @@ public class CustomerServiceImp implements ICustomerService {
     public String delete(Integer id) {
         iCustomerRepository.findById(id).orElseThrow(()->new CustomerNotFoundException("Customer with id= "+id+" is not found"));
         iCustomerRepository.deleteById(id);
-        return "Customer Deleted";
+        return "Deleted";
     }
 
     @Override
