@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class ActivityBooking {
+public class ServiceBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,7 +14,7 @@ public class ActivityBooking {
 //    [ONE ACTIVITY BOOKING CAN HAVE MANY ACTIVITIES]
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "activityId")
-    private Integer activityId;
+    private Integer serviceId;
     private final LocalDate bookingDate = LocalDate.now();
     private LocalDate appointmentDate;
     private Status status;
@@ -30,12 +30,12 @@ public class ActivityBooking {
         this.id = id;
     }
 
-    public Integer getActivityId() {
-        return activityId;
+    public Integer getServiceId() {
+        return serviceId;
     }
 
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
     }
 
     public LocalDate getBookingDate() {

@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class CentralExceptionHandler {
-    @ExceptionHandler(ActivityNotFoundException.class)
-    public ResponseEntity<String> activityNotFoundException(ActivityNotFoundException e){
+    @ExceptionHandler(ServiceNotFoundException.class)
+    public ResponseEntity<String> activityNotFoundException(ServiceNotFoundException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(CourseNotFoundException.class)

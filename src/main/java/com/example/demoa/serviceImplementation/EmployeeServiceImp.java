@@ -19,7 +19,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public String addEmployee(Employee employee) {
         employeeRepository.save(employee);
-        return "Activity added successfully";
+        return "Service added successfully";
     }
 
     @Override
