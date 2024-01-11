@@ -42,9 +42,6 @@ public class ServiceBooking {
         return bookingDate;
     }
 
-//    public void setBookingDate(LocalDate bookingDate) {
-//        this.bookingDate = bookingDate;
-//    }
 
     public LocalDate getAppointmentDate() {
         return appointmentDate;

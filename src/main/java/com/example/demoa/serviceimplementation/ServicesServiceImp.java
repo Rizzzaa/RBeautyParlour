@@ -1,4 +1,4 @@
-package com.example.demoa.serviceImplementation;
+package com.example.demoa.serviceimplementation;
 
 import com.example.demoa.entity.Service;
 import com.example.demoa.exception.ServiceNotFoundException;
@@ -11,8 +11,12 @@ import java.util.List;
 
 @org.springframework.stereotype.Service
 public class ServicesServiceImp implements IServicesService {
-    @Autowired
+
     private ServiceRepository iServiceRepository;
+    @Autowired
+    public ServicesServiceImp(ServiceRepository iServiceRepository) {
+        this.iServiceRepository = iServiceRepository;
+    }
 
     @Override
     public String addService(Service service) {
@@ -22,22 +26,7 @@ public class ServicesServiceImp implements IServicesService {
 
     @Override
     public String updateService(Integer id, Service service){
-//        List<Service> activityList = new ArrayList<>(iServiceRepository.findAll());
         Service serviceOfId = iServiceRepository.findById(id).orElseThrow(ServiceNotFoundException::new);
-
-//        if(service.getActivityName() != null){
-//            int i=0;
-//            while(i < activityList.size()){
-//                if(!Objects.equals(activityList.get(i).getActivityName(), service.getActivityName())){
-//                    i++;
-//                    if(i == activityList.size()){
-//                        serviceOfId.setActivityName(service.getActivityName());
-//                    }
-//                }else {
-//                    throw new AlreadyExistsException(service.getActivityName());
-//                }
-//            }
-//        }
 
 
         if(service.getServiceName() != null){
@@ -74,7 +63,4 @@ public class ServicesServiceImp implements IServicesService {
     }
 
 
-//    public Service readByName(String name){
-//
-//    }
 }

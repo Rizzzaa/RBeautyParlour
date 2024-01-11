@@ -1,16 +1,11 @@
 package com.example.demoa.controller;
 
 import com.example.demoa.entity.Course;
-import com.example.demoa.entity.ImageUploadResponse;
-import com.example.demoa.serviceImplementation.CourseServiceImp;
+import com.example.demoa.serviceimplementation.CourseServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -19,13 +14,16 @@ import java.util.List;
 public class CourseController {
 
 
-    @Autowired
+
     private CourseServiceImp courseServiceImp;
+    @Autowired
+    public CourseController(CourseServiceImp courseServiceImp) {
+        this.courseServiceImp = courseServiceImp;
+    }
 
 
     @PostMapping("/createCourse")
     public ResponseEntity<String> createCourse(@RequestBody Course course){
-//        courseServiceImp.uploadImage(file);
         return new ResponseEntity<>(courseServiceImp.add(course), HttpStatus.OK);
     }
 
@@ -40,7 +38,7 @@ public ResponseEntity<String> deleteCourse(@PathVariable("courseId") Integer cou
 }
 
     @GetMapping(value = "/readCourse/{courseId}")
-    public ResponseEntity<?> readCourse(@PathVariable("courseId") Integer courseId) {
+    public ResponseEntity<Course> readCourse(@PathVariable("courseId") Integer courseId) {
         return new ResponseEntity<>(courseServiceImp.read(courseId), HttpStatus.OK);
     }
 
@@ -49,16 +47,5 @@ public ResponseEntity<String> deleteCourse(@PathVariable("courseId") Integer cou
             return courseServiceImp.readAll();
         }
 
-    @PostMapping(value = "/uploadImage", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ImageUploadResponse> uploadImage(@RequestParam ("courseImage") MultipartFile file)  throws IOException{
-        ImageUploadResponse response = courseServiceImp.uploadImage(file);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
-
-    @GetMapping(value = "/{name}",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getImageByName(@PathVariable("name") String name) {
-        byte[] image = courseServiceImp.getImage(name);
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
-    }
 
 }

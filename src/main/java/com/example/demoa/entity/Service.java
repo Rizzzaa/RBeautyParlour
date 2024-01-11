@@ -14,8 +14,6 @@ public class Service {
     private Double serviceCost;
 
 
-//    private Integer customerId;
-
     public Integer getServiceId() {
         return serviceId;
     }
@@ -48,11 +46,5 @@ public class Service {
         this.serviceCost = serviceCost;
     }
 
-//    public Integer getCustomerId() {
-//        return customerId;
-//    }
-//
-//    public void setCustomerId(Integer customerId) {
-//        this.customerId = customerId;
-//    }
+
 }

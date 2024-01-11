@@ -1,4 +1,4 @@
-package com.example.demoa.serviceImplementation;
+package com.example.demoa.serviceimplementation;
 
 import com.example.demoa.entity.ServiceBooking;
 import com.example.demoa.enums.Status;
@@ -15,15 +15,20 @@ import java.util.List;
 
 @Service
 public class ServiceBookingServiceImp implements IServiceBookingService {
-    @Autowired
-    ServiceBookingRepository serviceBookingRepository;
-    @Autowired
-    ServiceRepository serviceRepository;
 
+    ServiceBookingRepository serviceBookingRepository;
+
+    ServiceRepository serviceRepository;
+    @Autowired
+    public ServiceBookingServiceImp(ServiceBookingRepository serviceBookingRepository) {
+        this.serviceBookingRepository = serviceBookingRepository;
+    }
+    public ServiceBookingServiceImp(ServiceRepository serviceRepository) {
+        this.serviceRepository = serviceRepository;
+    }
 
     @Override
     public String addServiceBooking(ServiceBooking serviceBooking) {
-//        Service activityOfId = serviceRepository.findById(serviceBooking.getActivityId()).orElseThrow(() -> new NotFoundException("Service"));
         serviceBookingRepository.save(serviceBooking);
         return "Booked Service";
     }

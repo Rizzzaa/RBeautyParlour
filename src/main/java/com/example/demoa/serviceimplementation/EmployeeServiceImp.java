@@ -1,4 +1,4 @@
-package com.example.demoa.serviceImplementation;
+package com.example.demoa.serviceimplementation;
 
 
 import com.example.demoa.entity.Employee;
@@ -13,8 +13,12 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImp implements EmployeeService {
-    @Autowired
+
     private EmployeeRepository employeeRepository;
+    @Autowired
+    public EmployeeServiceImp(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     @Override
     public String addEmployee(Employee employee) {

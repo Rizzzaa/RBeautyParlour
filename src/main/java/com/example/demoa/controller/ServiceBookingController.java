@@ -2,7 +2,7 @@ package com.example.demoa.controller;
 
 
 import com.example.demoa.entity.ServiceBooking;
-import com.example.demoa.serviceImplementation.ServiceBookingServiceImp;
+import com.example.demoa.serviceimplementation.ServiceBookingServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,12 @@ import java.util.List;
 @RequestMapping(value = "/demoa")
 public class ServiceBookingController {
 
-    @Autowired
+
     private ServiceBookingServiceImp serviceBookingServiceImp;
+    @Autowired
+    public ServiceBookingController(ServiceBookingServiceImp serviceBookingServiceImp) {
+        this.serviceBookingServiceImp = serviceBookingServiceImp;
+    }
 
     @PostMapping("/createServiceBooking")
     public ResponseEntity<String> createServiceBooking(@RequestBody ServiceBooking serviceBooking) {

@@ -23,16 +23,6 @@ public class Course {
     private Category category;
     private Double courseCost;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private CourseImage courseImageData;
-
-//    @Lob
-//    @Column(name = "imagedata", length = 1000)
-//    private byte[] imageData;
-//
-//    private String name;
-//    private String type;
 
     public Integer getCourseId() {
         return courseId;
@@ -89,11 +79,4 @@ public class Course {
         this.courseCost = courseCost;
     }
 
-    public CourseImage getCourseImageData() {
-        return courseImageData;
-    }
-
-    public void setCourseImageData(CourseImage courseImageData) {
-        this.courseImageData = courseImageData;
-    }
-}
+   }

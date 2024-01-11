@@ -1,4 +1,4 @@
-package com.example.demoa.serviceImplementation;
+package com.example.demoa.serviceimplementation;
 
 
 import com.example.demoa.entity.Course;
@@ -19,13 +19,27 @@ import java.util.List;
 @Service
 public class CourseBookingServiceImp implements ICourseBookingService {
 
-    @Autowired
+
     CourseBookingRepository courseBookingRepository;
+    EmployeeServiceImp employeeServiceImp;
+    CourseServiceImp courseServiceImp;
+
 
     @Autowired
-    EmployeeServiceImp employeeServiceImp;
-    @Autowired
-    CourseServiceImp courseServiceImp;
+    public CourseBookingServiceImp(CourseBookingRepository courseBookingRepository) {
+        this.courseBookingRepository = courseBookingRepository;
+    }
+
+    public CourseBookingServiceImp(EmployeeServiceImp employeeServiceImp) {
+        this.employeeServiceImp = employeeServiceImp;
+    }
+
+
+    public CourseBookingServiceImp(CourseServiceImp courseServiceImp) {
+        this.courseServiceImp = courseServiceImp;
+    }
+
+
 
 
     @Override
@@ -104,10 +118,8 @@ public class CourseBookingServiceImp implements ICourseBookingService {
     @Override
     public String cancelCourseBooking(Integer id) {
         CourseBooking courseBookingOfId = courseBookingRepository.findById(id).orElseThrow(BookingNotFoundException::new);
-//        Cancelled cancelled = new Cancelled(courseBookingOfId);
         courseBookingOfId.setStatus(Status.CANCELLED);
         courseBookingRepository.save(courseBookingOfId);
-//        cancelBookingServiceImp.add(cancelled);
 
         return "Booking Deleted";
     }

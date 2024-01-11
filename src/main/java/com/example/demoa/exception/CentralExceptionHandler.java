@@ -18,8 +18,8 @@ public class CentralExceptionHandler {
     public ResponseEntity<String> courseNotFoundException(CourseNotFoundException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler(CustomerNotFoundException.class)
-    public ResponseEntity<String> customerNotFoundException(CustomerNotFoundException e){
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> customerNotFoundException(UserNotFoundException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(EmployeeNotFoundException.class)

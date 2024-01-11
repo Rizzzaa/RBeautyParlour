@@ -48,9 +48,6 @@ public class CourseBooking {
         return bookingDate;
     }
 
-//    public void setBookingDate(LocalDate bookingDate) {
-//        this.bookingDate = bookingDate;
-//    }
 
     public LocalDate getCompletionDate() {
         return completionDate;

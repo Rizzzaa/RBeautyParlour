@@ -1,30 +1,23 @@
-package com.example.demoa.serviceImplementation;
+package com.example.demoa.serviceimplementation;
 
 import com.example.demoa.entity.Course;
-import com.example.demoa.entity.CourseImage;
-import com.example.demoa.entity.ImageUploadResponse;
 import com.example.demoa.exception.CourseNotFoundException;
-import com.example.demoa.repository.CourseImageRepository;
 import com.example.demoa.repository.CourseRepository;
 import com.example.demoa.service.ICourseService;
-import com.example.demoa.util.CourseImageUtility;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CourseServiceImp implements ICourseService {
-    @Autowired
-    private CourseRepository iCourseRepository;
 
+    private CourseRepository iCourseRepository;
     @Autowired
-    private CourseImageRepository iCourseImageRepository;
+    public CourseServiceImp(CourseRepository iCourseRepository) {
+        this.iCourseRepository = iCourseRepository;
+    }
+
 
     @Override
     public String add(Course course){
@@ -68,32 +61,13 @@ public class CourseServiceImp implements ICourseService {
 
     @Override
     public Course read(Integer id) {
-//        Optional<CourseImage> dbImage = iCourseImageRepository.findById(id);
-//        CourseImageUtility.decompressImage(dbImage.get().getImageData());
         return iCourseRepository.findById(id).orElseThrow(CourseNotFoundException::new);
     }
 
 
     @Override
     public List<Course> readAll() {
-        List<Course> courseList=new ArrayList<Course>();
-        courseList.addAll(iCourseRepository.findAll());
-        return courseList;
+        return new ArrayList<>(iCourseRepository.findAll());
     }
 
-    @Override
-    public ImageUploadResponse uploadImage(MultipartFile file) throws IOException {
-        iCourseImageRepository.save(CourseImage.builder()
-                .name(file.getOriginalFilename())
-                .type(file.getContentType())
-                .imageData(CourseImageUtility.compressImage(file.getBytes()))
-                .build());
-        return new ImageUploadResponse("Image uploaded: " + file.getOriginalFilename());
-    }
-    
-    @Transactional
-    public byte[] getImage(String name) {
-        Optional<CourseImage> dbImage = iCourseImageRepository.findByName(name);
-        return CourseImageUtility.decompressImage(dbImage.get().getImageData());
-    }
 }
