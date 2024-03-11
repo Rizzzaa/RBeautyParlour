@@ -1,19 +1,25 @@
 package com.example.demoa.entity;
 
-import com.example.demoa.enums.Role;
 import jakarta.persistence.*;
+import com.example.demoa.enums.Role;
 
-
-
-@Entity
+@Entity(name = "AppUsers")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-    private String userEmail;
+    private String email;
     private String userName;
     private String password;
-    private Role userRole;
+    private Role role;
+
+    public User() { }
+    public User(String email, String userName, String password, Role role) {
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -23,12 +29,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUserName() {
@@ -47,11 +53,12 @@ public class User {
         this.password = password;
     }
 
-    public Role getUserRole() {
-        return userRole;
+    public Role getRole() {
+        return role;
     }
 
-    public void setUserRole(Role userRole) {
-        this.userRole = userRole;
+    public void setRole(Role role) {
+        this.role = role;
     }
+
 }

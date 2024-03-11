@@ -1,17 +1,12 @@
-package com.example.demoa.entity;
+package com.example.demoa.entity.admin;
 
 import com.example.demoa.enums.Category;
 import com.example.demoa.enums.Level;
 import jakarta.persistence.*;
-import lombok.*;
+
 
 @Entity
-@Table
-@Builder(builderMethodName = "builder")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +18,17 @@ public class Course {
     private Category category;
     private Double courseCost;
 
+    public Course() {
+    }
+
+    public Course(String courseName, String description, Integer duration, Level level, Category category, Double courseCost) {
+        this.courseName = courseName;
+        this.description = description;
+        this.duration = duration;
+        this.level = level;
+        this.category = category;
+        this.courseCost = courseCost;
+    }
 
     public Integer getCourseId() {
         return courseId;

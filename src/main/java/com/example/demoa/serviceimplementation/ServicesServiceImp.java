@@ -1,6 +1,7 @@
 package com.example.demoa.serviceimplementation;
 
-import com.example.demoa.entity.Service;
+import com.example.demoa.entity.admin.Service;
+import com.example.demoa.exception.InvalidArgumentException;
 import com.example.demoa.exception.ServiceNotFoundException;
 import com.example.demoa.repository.ServiceRepository;
 import com.example.demoa.service.IServicesService;
@@ -20,18 +21,26 @@ public class ServicesServiceImp implements IServicesService {
 
     @Override
     public String addService(Service service) {
-        iServiceRepository.save(service);
-        return "Service added successfully";
+        if(service !=null) {
+            iServiceRepository.save(service);
+            return "Service Added";
+        }else{
+            throw new InvalidArgumentException("Provided info for adding service is null");
+        }
     }
 
     @Override
     public String updateService(Integer id, Service service){
+        if(service !=null) {
         Service serviceOfId = iServiceRepository.findById(id).orElseThrow(ServiceNotFoundException::new);
 
 
         if(service.getServiceName() != null){
             serviceOfId.setServiceName(service.getServiceName());
         }
+
+    //  UPDATE FOR COMPANY HERE
+
         if(service.getCategory() != null){
             serviceOfId.setCategory(service.getCategory());
         }
@@ -41,14 +50,16 @@ public class ServicesServiceImp implements IServicesService {
 
         iServiceRepository.save(serviceOfId);
         return "Service Updated";
+    }else{
+        throw new InvalidArgumentException("Provided info for updating service is null");
     }
-
+    }
 
     @Override
     public String deleteService(Integer id) throws ServiceNotFoundException {
         iServiceRepository.findById(id).orElseThrow(()->new ServiceNotFoundException("Service with id= " + id + " is not found"));
         iServiceRepository.deleteById(id);
-        return "Deleted";
+        return "Service Deleted";
     }
 
     @Override

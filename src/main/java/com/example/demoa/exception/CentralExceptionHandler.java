@@ -11,7 +11,15 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class CentralExceptionHandler {
     @ExceptionHandler(ServiceNotFoundException.class)
-    public ResponseEntity<String> activityNotFoundException(ServiceNotFoundException e){
+    public ResponseEntity<String> serviceNotFoundException(ServiceNotFoundException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(CartItemNotFoundException.class)
+    public ResponseEntity<String> cartItemNotFoundException(CartItemNotFoundException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<String> orderNotFoundException(OrderNotFoundException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(CourseNotFoundException.class)

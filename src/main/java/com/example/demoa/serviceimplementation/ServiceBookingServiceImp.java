@@ -1,8 +1,9 @@
 package com.example.demoa.serviceimplementation;
 
-import com.example.demoa.entity.ServiceBooking;
+import com.example.demoa.entity.user.ServiceBooking;
 import com.example.demoa.enums.Status;
 import com.example.demoa.exception.BookingNotFoundException;
+import com.example.demoa.exception.InvalidArgumentException;
 import com.example.demoa.repository.ServiceBookingRepository;
 import com.example.demoa.repository.ServiceRepository;
 import com.example.demoa.service.IServiceBookingService;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+
 public class ServiceBookingServiceImp implements IServiceBookingService {
 
     ServiceBookingRepository serviceBookingRepository;
@@ -29,12 +31,17 @@ public class ServiceBookingServiceImp implements IServiceBookingService {
 
     @Override
     public String addServiceBooking(ServiceBooking serviceBooking) {
+        if(serviceBooking != null) {
         serviceBookingRepository.save(serviceBooking);
-        return "Booked Service";
+        return "Service Booked";
+        }else {
+            throw new InvalidArgumentException("Provided info for adding booking is null");
+        }
     }
 
     @Override
     public String updateServiceBooking(Integer id, ServiceBooking serviceBooking) {
+        if(serviceBooking != null) {
         ServiceBooking serviceBookingOfId = serviceBookingRepository.findById(id).orElseThrow(BookingNotFoundException::new);
         if(serviceBooking.getServiceId() != null){
             serviceBookingOfId.setServiceId(serviceBooking.getServiceId());
@@ -67,6 +74,9 @@ public class ServiceBookingServiceImp implements IServiceBookingService {
         }
         serviceBookingRepository.save(serviceBookingOfId);
         return "Booking Updated";
+        }else {
+            throw new InvalidArgumentException("Provided info for adding booking is null");
+        }
     }
 
     public String cancelServiceBooking(Integer id){

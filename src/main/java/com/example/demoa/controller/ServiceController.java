@@ -1,6 +1,6 @@
 package com.example.demoa.controller;
 
-import com.example.demoa.entity.Service;
+import com.example.demoa.entity.admin.Service;
 import com.example.demoa.serviceimplementation.ServicesServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

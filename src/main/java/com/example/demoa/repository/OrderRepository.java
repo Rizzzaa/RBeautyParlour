@@ -1,9 +1,9 @@
 package com.example.demoa.repository;
 
-import com.example.demoa.entity.Admin;
+import com.example.demoa.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdminRepository extends JpaRepository<Admin, Integer> {
+public interface OrderRepository extends JpaRepository<Order, Integer> {
 }

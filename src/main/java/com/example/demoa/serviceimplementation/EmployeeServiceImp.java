@@ -1,8 +1,9 @@
 package com.example.demoa.serviceimplementation;
 
 
-import com.example.demoa.entity.Employee;
+import com.example.demoa.entity.admin.Employee;
 import com.example.demoa.exception.EmployeeNotFoundException;
+import com.example.demoa.exception.InvalidArgumentException;
 import com.example.demoa.repository.EmployeeRepository;
 import com.example.demoa.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,17 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public String addEmployee(Employee employee) {
-        employeeRepository.save(employee);
-        return "Service added successfully";
+        if(employee != null) {
+            employeeRepository.save(employee);
+            return "Employee Added";
+        }else {
+            throw new InvalidArgumentException("Provided info for adding employee is null");
+        }
     }
 
     @Override
     public String updateEmployee(Integer id, Employee employee) {
+        if(employee != null) {
         Employee employeeOfId = employeeRepository.findById(id).orElseThrow(EmployeeNotFoundException::new);
 
         if(employee.getEmployeeName() != null){
@@ -44,6 +50,9 @@ public class EmployeeServiceImp implements EmployeeService {
         }
         employeeRepository.save(employeeOfId);
         return "Employee Updated";
+    }else {
+        throw new InvalidArgumentException("Provided info for updating employee is null");
+    }
     }
 
 
@@ -51,7 +60,7 @@ public class EmployeeServiceImp implements EmployeeService {
     public String deleteEmployee(Integer id) throws EmployeeNotFoundException{
         employeeRepository.findById(id).orElseThrow(()->new EmployeeNotFoundException("Employee with id= " + id + " is not found"));
         employeeRepository.deleteById(id);
-        return "Deleted";
+        return "Employee Deleted";
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.example.demoa.repository;
 
 
-import com.example.demoa.entity.Employee;
+import com.example.demoa.entity.admin.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

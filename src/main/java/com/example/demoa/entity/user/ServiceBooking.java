@@ -1,4 +1,4 @@
-package com.example.demoa.entity;
+package com.example.demoa.entity.user;
 
 import com.example.demoa.enums.Status;
 import jakarta.persistence.*;
@@ -11,9 +11,9 @@ public class ServiceBooking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    [ONE ACTIVITY BOOKING CAN HAVE MANY ACTIVITIES]
+//    [ONE SERVICE BOOKING CAN HAVE MANY SERVIES]
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "activityId")
+//    @JoinColumn(name = "serviceId")
     private Integer serviceId;
     private final LocalDate bookingDate = LocalDate.now();
     private LocalDate appointmentDate;
@@ -21,6 +21,17 @@ public class ServiceBooking {
     private Double totalCost;
     private Integer employeeId;
     private Integer customerId;
+
+    public ServiceBooking() {
+    }
+
+    public ServiceBooking( LocalDate appointmentDate, Status status, Double totalCost, Integer employeeId, Integer customerId) {
+        this.appointmentDate = appointmentDate;
+        this.status = status;
+        this.totalCost = totalCost;
+        this.employeeId = employeeId;
+        this.customerId = customerId;
+    }
 
     public Integer getId() {
         return id;
@@ -56,6 +67,9 @@ public class ServiceBooking {
 
     public void setStatus(Status status) {
         this.status = status;
+
+        System.currentTimeMillis();
+
     }
 
 

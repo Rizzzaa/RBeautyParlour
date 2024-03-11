@@ -1,7 +1,8 @@
 package com.example.demoa.serviceimplementation;
 
-import com.example.demoa.entity.Course;
+import com.example.demoa.entity.admin.Course;
 import com.example.demoa.exception.CourseNotFoundException;
+import com.example.demoa.exception.InvalidArgumentException;
 import com.example.demoa.repository.CourseRepository;
 import com.example.demoa.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,34 +22,41 @@ public class CourseServiceImp implements ICourseService {
 
     @Override
     public String add(Course course){
-        iCourseRepository.save(course);
-        return "Course added successfully";
+        if(course != null) {
+            iCourseRepository.save(course);
+            return "Course added successfully";
+        }else{
+            throw new InvalidArgumentException("Provided info for adding course is null");
+        }
     }
 
     @Override
     public String update(Integer id, Course course) {
+        if(course != null){
         Course courseOfId = iCourseRepository.findById(id).orElseThrow(CourseNotFoundException::new);
-        if(course.getCourseName() != null){
+        if (course.getCourseName() != null) {
             courseOfId.setCourseName(course.getCourseName());
         }
-        if(course.getDescription() != null){
+        if (course.getDescription() != null) {
             courseOfId.setDescription(course.getDescription());
         }
-        if(course.getDuration() != null){
+        if (course.getDuration() != null) {
             courseOfId.setDuration(course.getDuration());
         }
-        if(course.getLevel() != null){
+        if (course.getLevel() != null) {
             courseOfId.setLevel(course.getLevel());
         }
-        if(course.getCategory() != null){
+        if (course.getCategory() != null) {
             courseOfId.setCategory(course.getCategory());
         }
-        if(course.getCourseCost() != null){
+        if (course.getCourseCost() != null) {
             courseOfId.setCourseCost(course.getCourseCost());
         }
-
         iCourseRepository.save(courseOfId);
         return "Course Updated";
+    }else{
+            throw new InvalidArgumentException("Provided info for updating course is null");
+        }
     }
 
 

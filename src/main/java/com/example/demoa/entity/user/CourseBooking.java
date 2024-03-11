@@ -1,4 +1,4 @@
-package com.example.demoa.entity;
+package com.example.demoa.entity.user;
 
 import com.example.demoa.enums.Status;
 import jakarta.persistence.Entity;
@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class CourseBooking {
@@ -17,16 +16,29 @@ public class CourseBooking {
     private Integer courseId;
     private final LocalDate bookingDate = LocalDate.now();
     private LocalDate completionDate;
+
     private Status status;
-    private LocalDateTime slot;
+    private LocalDate slot;
     private Integer employeeId;
     private Double totalCost;
-
     private Integer customerId;
 
 
+    public CourseBooking() {
+    }
 
+    public CourseBooking(Integer courseId, LocalDate slot, Double totalCost) {
+        this.courseId = courseId;
+        this.slot = slot;
+        this.totalCost = totalCost;
+    }
 
+    public CourseBooking(LocalDate completionDate, Status status, Integer employeeId, Double totalCost) {
+        this.completionDate = completionDate;
+        this.status = status;
+        this.employeeId = employeeId;
+        this.totalCost = totalCost;
+    }
 
     public Integer getId() {
         return id;
@@ -66,11 +78,11 @@ public class CourseBooking {
         this.status = status;
     }
 
-    public LocalDateTime getSlot() {
+    public LocalDate getSlot() {
         return slot;
     }
 
-    public void setSlot(LocalDateTime slot) {
+    public void setSlot(LocalDate slot) {
         this.slot = slot;
     }
 

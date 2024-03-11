@@ -1,5 +1,29 @@
 package com.example.demoa.enums;
 
 public enum Category {
-    FACIAL, NAILS, BODY, HAIR, MAKEUP, ACTIVITY, COURSE
+
+//    ---NULL---
+    DEFAULT,
+
+//    ---ALL---
+    FACIAL, NAILS, BODY, HAIR, MAKEUP, SERVICE, COURSE,
+
+
+
+//    ---SUBDIVISIONS---
+
+//    ---FACIAL, BODY---
+    DIAMOND, PLATINUM, GOLD, SILVER, WINE, D_TAN, SKIN_WHITENING, ANTI_AGING, ANTI_ACNE, CHARCOAL, FRUIT, PAPAYA,
+
+//    ---MAKEUP, NAILS---
+    REGULAR, WESTERN, PARTY, BRIDAL,
+
+//    ---HAIR---
+    HAIR_CUTTING, HAIR_COLORING, HAIR_STYLING, HAIR_TREATMENT
+
+
+
+
+
+
 }

@@ -1,7 +1,7 @@
 package com.example.demoa.service;
 
 
-import com.example.demoa.entity.Employee;
+import com.example.demoa.entity.admin.Employee;
 
 import java.util.List;
 

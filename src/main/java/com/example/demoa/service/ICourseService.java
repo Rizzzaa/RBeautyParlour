@@ -1,6 +1,6 @@
 package com.example.demoa.service;
 
-import com.example.demoa.entity.Course;
+import com.example.demoa.entity.admin.Course;
 import java.util.List;
 
 public interface ICourseService {

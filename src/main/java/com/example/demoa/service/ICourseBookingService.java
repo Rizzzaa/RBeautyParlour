@@ -1,6 +1,6 @@
 package com.example.demoa.service;
 
-import com.example.demoa.entity.CourseBooking;
+import com.example.demoa.entity.user.CourseBooking;
 
 import java.util.List;
 

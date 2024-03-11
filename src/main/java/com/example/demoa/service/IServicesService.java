@@ -1,6 +1,6 @@
 package com.example.demoa.service;
 
-import com.example.demoa.entity.Service;
+import com.example.demoa.entity.admin.Service;
 
 import java.util.List;
 

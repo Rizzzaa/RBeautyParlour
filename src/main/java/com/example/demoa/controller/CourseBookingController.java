@@ -1,7 +1,7 @@
 package com.example.demoa.controller;
 
 
-import com.example.demoa.entity.CourseBooking;
+import com.example.demoa.entity.user.CourseBooking;
 import com.example.demoa.serviceimplementation.CourseBookingServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
